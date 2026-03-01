@@ -1,5 +1,10 @@
-import java.util.List;
 
+import java.util.List;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Random;
+import java.util.List;
 public class Workshop {
     public static void main(String[] args) {
 
@@ -109,58 +114,108 @@ if (n < 0) {
 
     // Método que encuentra el elemento mayor en un arreglo
     public int encontrarElementoMayor(int[] arreglo) {
-        // TODO: Implementar el método para encontrar el elemento mayor en un arreglo.
-        // Ejemplo: Si arreglo = [1, 2, 3, 4, 5], el resultado debería ser 5.
-        return 0;
+        int mayor = arreglo[0]; // Asumimos que el primero es el mayor
+
+        for (int num : arreglo) {
+            if (num > mayor)
+                mayor = num; // Actualizamos si encontramos uno mayor
+        }
+
+        return mayor;
     }
 
     // Método que encuentra el elemento menor en un arreglo
     public int encontrarElementoMenor(int[] arreglo) {
-        // TODO: Implementar el método para encontrar el elemento menor en un arreglo.
-        // Ejemplo: Si arreglo = [1, 2, 3, 4, 5], el resultado debería ser 1.
-        return 0;
+      for (int num : arreglo) {
+            if (num == elemento)
+                return true; // Si lo encuentra
+        }
+
+        return false; // Si no lo encuentra
     }
 
     // Método que busca un elemento en un arreglo
     public boolean buscarElemento(int[] arreglo, int elemento) {
         // TODO: Implementar el método para buscar un elemento en un arreglo.
         // Ejemplo: Si arreglo = [1, 2, 3, 4, 5] y elemento = 3, el resultado debería ser true.
-        return false;
+          for (int num : arreglo) {
+            if (num == elemento)
+                return true; // Si lo encuentra
+        }
+
+        return false; // Si no lo encuentra
     }
 
     // Método que invierte un arreglo
     public int[] invertirArreglo(int[] arreglo) {
         // TODO: Implementar el método para invertir un arreglo.
         // Ejemplo: Si arreglo = [1, 2, 3, 4, 5], el resultado debería ser [5, 4, 3, 2, 1].
-        return new int[0];
+          int[] invertido = new int[arreglo.length];
+
+        for (int i = 0; i < arreglo.length; i++) {
+
+            // Copiamos desde el final hacia adelante
+            invertido[i] = arreglo[arreglo.length - 1 - i];
+        }
+
+        return invertido;
     }
 
     // Método que ordena un arreglo en orden ascendente
     public int[] ordenarArreglo(int[] arreglo) {
         // TODO: Implementar el método para ordenar un arreglo en orden ascendente.
         // Ejemplo: Si arreglo = [5, 4, 3, 2, 1], el resultado debería ser [1, 2, 3, 4, 5].
-        return new int[0];
+          int[] copia = arreglo.clone(); // Clonamos para no modificar el original
+
+        java.util.Arrays.sort(copia); // Ordenamos
+
+        return copia;
     }
 
     // Método que elimina los duplicados de un arreglo
     public int[] eliminarDuplicados(int[] arreglo) {
-        // TODO: Implementar el método para eliminar los duplicados de un arreglo.
-        // Ejemplo: Si arreglo = [1, 2, 2, 3, 4, 4, 5], el resultado debería ser [1, 2, 3, 4, 5].
-        return new int[0];
+          Set<Integer> set = new HashSet<>();
+
+        for (int num : arreglo) {
+            set.add(num); // Set no permite repetidos
+        }
+
+        int[] resultado = new int[set.size()];
+        int i = 0;
+
+        for (int num : set) {
+            resultado[i++] = num;
+        }
+
+        return resultado;
     }
 
     // Método que combina dos arreglos en uno solo
     public int[] combinarArreglos(int[] arreglo1, int[] arreglo2) {
         // TODO: Implementar el método para combinar dos arreglos en uno solo.
-        // Ejemplo: Si arreglo1 = [1, 2, 3, 4, 5] y arreglo2 = [6, 7, 8], el resultado debería ser [1, 2, 3, 4, 5, 6, 7, 8].
-        return new int[0];
+        // Ejemplo: Si arreglo1 = [1, 2, 3, 4, 5] y arreglo2 = [6, 7, 8], el resultado debería ser [1, 2, 3, 4, 5, 6, 7, 8]. int[] combinado = new int[arreglo1.length + arreglo2.length];
+
+        System.arraycopy(arreglo1, 0, combinado, 0, arreglo1.length);
+
+        System.arraycopy(arreglo2, 0, combinado, arreglo1.length, arreglo2.length);
+
+        return combinado;
     }
 
     // Método que rota un arreglo n posiciones
     public int[] rotarArreglo(int[] arreglo, int posiciones) {
         // TODO: Implementar el método para rotar un arreglo n posiciones.
         // Ejemplo: Si arreglo = [1, 2, 3, 4, 5] y posiciones = 2, el resultado debería ser [3, 4, 5, 1, 2].
-        return new int[0];
+         int n = arreglo.length;
+
+        int[] resultado = new int[n];
+
+        for (int i = 0; i < n; i++) {
+
+            resultado[i] = arreglo[(i + posiciones) % n];
+        }
+
+        return resultado;
     }
 
     // Método que cuenta los caracteres en una cadena
