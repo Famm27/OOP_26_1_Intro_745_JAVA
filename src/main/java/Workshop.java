@@ -299,21 +299,26 @@ if (n < 0) {
     public double promedioLista(List<Integer> lista) {
         // TODO: Implementar el método para calcular el promedio de una lista de números.
         // Ejemplo: Si lista = [1, 2, 3, 4, 5], el resultado debería ser 3.0.
-        return 0.0;
+        int suma = 0;
+
+        for (int num : lista) {
+            suma = suma + num;
+        }
+        return (double) suma / lista.size();
     }
 
     // Método que convierte un número en su representación binaria
     public String convertirABinario(int numero) {
         // TODO: Implementar el método para convertir un número en su representación binaria.
         // Ejemplo: Si numero = 10, el resultado debería ser "1010".
-        return "";
+        return Integer.toBinaryString(numero);
     }
 
     // Método que convierte un número en su representación hexadecimal
     public String convertirAHexadecimal(int numero) {
         // TODO: Implementar el método para convertir un número en su representación hexadecimal.
         // Ejemplo: Si numero = 255, el resultado debería ser "FF".
-        return "";
+        return Integer.toHexString(numero).toUpperCase();
     }
 
     // Método para el juego de piedra, papel, tijera, lagarto, Spock
@@ -329,7 +334,47 @@ if (n < 0) {
 
         // El método debe retornar un mensaje indicando el resultado del juego.
         // Ejemplo: Si la eleccionUsuario es "Piedra", el resultado podría ser "Ganaste" o "Perdiste" dependiendo de la elección de la computadora.
-        return "";
+          // Creamos un arreglo con las opciones posibles
+    String[] opciones = {"Piedra", "Papel", "Tijera", "Lagarto", "Spock"};
+
+    // Creamos objeto Random para generar elección aleatoria
+    Random random = new Random();
+
+    // La computadora elige una opción aleatoria entre 0 y 4
+    String eleccionComputadora = opciones[random.nextInt(5)];
+
+    // Convertimos la elección del usuario para evitar errores por mayúsculas
+    eleccionUsuario = eleccionUsuario.substring(0,1).toUpperCase() 
+                      + eleccionUsuario.substring(1).toLowerCase();
+
+    // Si ambas elecciones son iguales → empate
+    if (eleccionUsuario.equals(eleccionComputadora)) {
+        return "Empate. Ambos eligieron " + eleccionUsuario;
+    }
+
+    // Condiciones donde el usuario Ggana
+    if (
+        (eleccionUsuario.equals("Piedra") && 
+            (eleccionComputadora.equals("Tijera") || eleccionComputadora.equals("Lagarto"))) ||
+
+        (eleccionUsuario.equals("Papel") && 
+            (eleccionComputadora.equals("Piedra") || eleccionComputadora.equals("Spock"))) ||
+
+        (eleccionUsuario.equals("Tijera") && 
+            (eleccionComputadora.equals("Papel") || eleccionComputadora.equals("Lagarto"))) ||
+
+        (eleccionUsuario.equals("Lagarto") && 
+            (eleccionComputadora.equals("Spock") || eleccionComputadora.equals("Papel"))) ||
+
+        (eleccionUsuario.equals("Spock") && 
+            (eleccionComputadora.equals("Tijera") || eleccionComputadora.equals("Piedra")))
+    ) {
+        return "Ganaste. La computadora eligió " + eleccionComputadora;
+    }
+
+    // Si no fue empate ni victoria → perdió
+    return "Perdiste. La computadora eligió " + eleccionComputadora;
+}
     }
 
     public String pptls2(String game[]) {
@@ -355,13 +400,60 @@ Rock crushes Scissors
     }
 
     public double areaCirculo(double radio) {
-        return 0.0;
+       
+    // Fórmulita: pi* radio²
+    // Math.PI es el valor de pi
+    return Math.PI * radio * radio;
     }
 
     public String zoodiac(int day, int month) {
-        return "";
+         // Aries
+    if ((month == 3 && day >= 21) || (month == 4 && day <= 19))
+        return "Aries";
+
+    // Tauro
+    if ((month == 4 && day >= 20) || (month == 5 && day <= 20))
+        return "Tauro";
+
+    // Géminis
+    if ((month == 5 && day >= 21) || (month == 6 && day <= 20))
+        return "Géminis";
+
+    // Cáncer
+    if ((month == 6 && day >= 21) || (month == 7 && day <= 22))
+        return "Cáncer";
+
+    // Leo
+    if ((month == 7 && day >= 23) || (month == 8 && day <= 22))
+        return "Leo";
+
+    // Virgo
+    if ((month == 8 && day >= 23) || (month == 9 && day <= 22))
+        return "Virgo";
+
+    // Libra
+    if ((month == 9 && day >= 23) || (month == 10 && day <= 22))
+        return "Libra";
+
+    // Escorpio
+    if ((month == 10 && day >= 23) || (month == 11 && day <= 21))
+        return "Escorpio";
+
+    // Sagitario
+    if ((month == 11 && day >= 22) || (month == 12 && day <= 21))
+        return "Sagitario";
+
+    // Capricornio
+    if ((month == 12 && day >= 22) || (month == 1 && day <= 19))
+        return "Capricornio";
+
+    // Acuario
+    if ((month == 1 && day >= 20) || (month == 2 && day <= 18))
+        return "Acuario";
+
+    // Si no fue ninguno anterior entoces Piscis
+    return "Piscis";
+}
     }
-
-
 }
 
